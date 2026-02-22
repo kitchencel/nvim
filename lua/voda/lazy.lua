@@ -29,7 +29,7 @@ require("lazy").setup({
     { "EdenEast/nightfox.nvim" },
 
     {
-        'nvim-telescope/telescope.nvim', tag = '0.1.6',
+        'nvim-telescope/telescope.nvim', branch = "master",
         dependencies = { 'nvim-lua/plenary.nvim' }
     },
 
@@ -69,5 +69,20 @@ require("lazy").setup({
         'numToStr/Comment.nvim',
         opts = {}
     },
+
+    { 'wakatime/vim-wakatime', lazy = false },
+    {'xiyaowong/transparent.nvim', lazy = false},
+    {"yuukiflow/Arduino-Nvim", dependencies = {"nvim-telescope/telescope.nvim", "neovim/nvim-lspconfig", },
+	    config = function()
+		    -- Load Arduino plugin for .ino files
+		    vim.api.nvim_create_autocmd("FileType", {
+			    pattern = "arduino",
+			    callback = function()
+				    require("Arduino-Nvim")
+			    end,
+		    })
+	    end,
+    }
+
 
 })
